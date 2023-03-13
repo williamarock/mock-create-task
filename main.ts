@@ -17,6 +17,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
     "Sword"
     ]
     game.splash("You just got a ", list2._pickRandom())
+    if (list2[0]) {
+        info.setLife(2)
+    }
     tiles.setTileAt(location5, sprites.dungeon.chestOpen)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
