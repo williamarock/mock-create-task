@@ -19,6 +19,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Hard Boss"
     },
+    "image5": {
+        "data": "hwQYABgAAAAAAAAAAAC7y8wMAAAAAAAAALDd273LAAAAAAAAALDd273LAAAAAAAAALDdzdzdzAAAAAAAALDdVcXcuwwAAAAAALDdVcXcuwwAAAC7u9u7VdXN3QwAAAC7u9u7VdXN3QwAALtbVVW7VVXF3QwAsLtVVVXdW1W13QwAsLtVVVXdW1W13QwAsFUd0V1V1b3b3QwAsFUd0V1V1b3b3QwAsFXx/19VVVVV3Qywu1X/v1tEVVVVVQywu1X/v1tEVVVVVQxbtVVV1U1EVVVVVQxbtVVV1U1EVVVVVQy1u1XV3U1EVVVVVQsLALtNREREVVVVuwsLALtNREREVVVVuwsAAADPTEREW1XVuwAAAADPTEREW1XVuwAAAAAAAEC7sLu7AAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Boss Easy"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
