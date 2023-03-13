@@ -17,9 +17,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
     "Sword"
     ]
     game.splash("You just got a ", list2._pickRandom())
-    if (list2[0]) {
-        info.setLife(2)
-    }
     tiles.setTileAt(location5, sprites.dungeon.chestOpen)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -92,9 +89,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedEast, function 
     Hard_Boss.setPosition(70, 100)
     statusbar.setColor(7, 2)
     statusbar.attachToSprite(Hard_Boss)
-})
-info.onLifeZero(function () {
-    game.gameOver(false)
 })
 let Hard_Boss: Sprite = null
 let statusbar: StatusBarSprite = null
