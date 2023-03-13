@@ -93,6 +93,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedEast, function 
     statusbar.setColor(7, 2)
     statusbar.attachToSprite(Hard_Boss)
 })
+info.onLifeZero(function () {
+    game.gameOver(false)
+})
 let Hard_Boss: Sprite = null
 let statusbar: StatusBarSprite = null
 let y = 0
