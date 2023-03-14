@@ -12,11 +12,22 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, func
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite52, location5) {
     list2 = [
     "Helmet",
-    "Armor",
+    "Trap >:^)",
     "Shield",
     "Sword"
     ]
     game.splash("You just got a ", list2._pickRandom())
+    if (list2[0]) {
+        statusbar2.setBarSize(40, 4)
+        statusbar2.attachToSprite(Josephine)
+    }
+    if (list2[1]) {
+        statusbar2.value += -15
+    }
+    if (list2[2]) {
+        statusbar2.setBarSize(40, 4)
+        statusbar2.attachToSprite(Josephine)
+    }
     tiles.setTileAt(location5, sprites.dungeon.chestOpen)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -45,7 +56,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Josephine.setPosition(x, y)
     x = Josephine.x
     y = Josephine.y
-    statusbar.value += -5
+    if (list2[3]) {
+        statusbar.value += -15
+    } else {
+        statusbar.value += -5
+    }
     pause(200)
     sprites.destroy(Josephine)
     Josephine = sprites.create(img`
@@ -71,15 +86,25 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     controller.moveSprite(Josephine, 100, 100)
     statusbar2 = statusbars.create(20, 4, StatusBarKind.Health)
     statusbar2.attachToSprite(Josephine)
+    Hard_Boss.follow(Josephine, 50)
     Attack = false
+})
+statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
+    game.gameOver(true)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite3, location3) {
     statusbar2.value += -1
+})
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorOpenEast, function (sprite4, location4) {
     tiles.setCurrentTilemap(tilemap`Corridor`)
     Josephine.setPosition(10, 125)
     game.showLongText("Welcome to the Dungeons! Get through and kill all the enemies in your way to get out! Good Luck!!", DialogLayout.Bottom)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    statusbar2.value += -20
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedEast, function (sprite6, location6) {
     tiles.setCurrentTilemap(tilemap`Boss Room`)
@@ -89,6 +114,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedEast, function 
     Hard_Boss.setPosition(70, 100)
     statusbar.setColor(7, 2)
     statusbar.attachToSprite(Hard_Boss)
+    Hard_Boss.follow(Josephine, 50)
 })
 let Hard_Boss: Sprite = null
 let statusbar: StatusBarSprite = null
