@@ -10,11 +10,28 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, func
     Josephine.setPosition(30, 40)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite52, location5) {
-    work_Chest(list2, Josephine)
+    list = [
+    "Helmet",
+    "Trap >:^)",
+    "Shield",
+    "Sword"
+    ]
+    game.splash("You just got a ", list._pickRandom())
+    if (list[0]) {
+        statusbar2.setBarSize(40, 4)
+        statusbar2.attachToSprite(Josephine)
+    }
+    if (list[1]) {
+        statusbar2.value += -15
+    }
+    if (list[2]) {
+        statusbar2.setBarSize(40, 4)
+        statusbar2.attachToSprite(Josephine)
+    }
     tiles.setTileAt(location5, sprites.dungeon.chestOpen)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    do_Attack(list2, Josephine)
+    doAttack(list, Josephine, Hard_Boss)
 })
 statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
     game.gameOver(true)
@@ -56,7 +73,7 @@ scene.setBackgroundColor(11)
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorOpenEast, function (sprite4, location4) {
     tiles.setCurrentTilemap(tilemap`Corridor`)
     Josephine.setPosition(10, 125)
-    game.showLongText("Welcome to the Dungeons! Get through and kill all the enemies in your way to get out! Good Luck!!", DialogLayout.Bottom)
+    game.showLongText("Welcome to the Dungeons! Get through the maze and beat the final boss to get out and win the game! Good Luck!!!", DialogLayout.Bottom)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     statusbar2.value += -20
@@ -71,7 +88,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedEast, function 
     statusbar.attachToSprite(Hard_Boss)
     Hard_Boss.follow(Josephine, 50)
 })
-function do_Attack (list2: any[], Josephine: Sprite) {
+function doAttack (list2: any[], Josephine: Sprite, Hard_Boss: Sprite) {
     Attack = true
     x = Josephine.x
     y = Josephine.y
@@ -129,33 +146,14 @@ function do_Attack (list2: any[], Josephine: Sprite) {
     statusbar2.attachToSprite(Josephine)
     Hard_Boss.follow(Josephine, 50)
     Attack = false
-}
-function work_Chest (list2: string[], Josephine: Sprite) {
-    list2 = [
-    "Helmet",
-    "Trap >:^)",
-    "Shield",
-    "Sword"
-    ]
-    game.splash("You just got a ", list2._pickRandom())
-    if (list2[0]) {
-        statusbar2.setBarSize(40, 4)
-        statusbar2.attachToSprite(Josephine)
-    }
-    if (list2[1]) {
-        statusbar2.value += -15
-    }
-    if (list2[2]) {
-        statusbar2.setBarSize(40, 4)
-        statusbar2.attachToSprite(Josephine)
-    }
-    return list2._pickRandom()
+    return 0
 }
 let y = 0
 let x = 0
 let Attack = false
-let Hard_Boss: Sprite = null
 let statusbar: StatusBarSprite = null
+let Hard_Boss: Sprite = null
 let statusbar2: StatusBarSprite = null
+let list: string[] = []
 let Josephine: Sprite = null
 do_Main(Josephine)
